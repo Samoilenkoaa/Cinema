@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">Cinema</string>
+    <string name="app_name">Movie</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_ratings">Ratings</string>
+    <string name="error">Error</string>
+    <string name="reload">Reload</string>
+    <string name="popularCinema">Популярное</string>
+    <string name="Cinema">Кино</string>
 </resources>
