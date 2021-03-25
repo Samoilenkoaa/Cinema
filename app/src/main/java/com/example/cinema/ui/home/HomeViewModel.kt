@@ -1,13 +1,28 @@
-package com.example.cinema.ui.home
+package com.example.androidwithkotlin.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.androidwithkotlin.model.Repository
+import com.example.androidwithkotlin.model.RepositoryImpl
+import java.lang.Thread.sleep
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
+    private val repositoryImpl: Repository = RepositoryImpl()
+) :
+    ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    fun getLiveData() = liveDataToObserve
+
+    fun getWeatherFromLocalSource() = getDataFromLocalSource()
+
+    fun getWeatherFromRemoteSource() = getDataFromLocalSource()
+
+    private fun getDataFromLocalSource() {
+        liveDataToObserve.value = AppState.Loading
+        Thread {
+            sleep(1000)
+            liveDataToObserve.postValue(AppState.Success(repositoryImpl.getCinemaFromLocalStorage()))
+        }.start()
     }
-    val text: LiveData<String> = _text
 }
